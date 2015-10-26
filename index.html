@@ -36,7 +36,7 @@
 }</pre>
 
 
-      <p>We can create the following simple Gloss model, initialized by passing in that JSON:</p>
+      <p>We can create the following simple Gloss model, that can be initialized by passing in such JSON:</p>
 
 <pre>
 import Gloss
@@ -61,7 +61,7 @@ struct RepoOwner: Decodable {
 
       <h2>Translating Models to JSON</h2>
 
-      <p>Gloss allows translating from models to JSON as well. Given the following model, we can:</p>
+      <p>Gloss allows translating from models to JSON as well. Given the previous model, we can:</p>
 
 <pre>
 import Gloss
@@ -98,12 +98,12 @@ struct RepoOwner: Glossy {
 
       <h1>Why Gloss?</h1>
 
-      <p>Gloss joins many other JSON parsing libraries in Swift; but, tries to solve the same problem with specific pain points in mind.</p>
+      <p>Gloss joins many other JSON parsing libraries in Swift; but, tries to solve the same problem with specific pain points in mind:</p>
 
       <ul>
-        <li>Immutable models - Each property should not be required to be a mutable</li>
+        <li>Immutable models - A model should not be required to have all properties be mutable</li>
         <li>Serialization - A JSON parsing library is more useful when it offers not only translation from JSON, but back to JSON</li>
-        <li>Ease of model creation and customization - Models should be fairly compact and creation should allow for custom transformation of values</li>
+        <li>Ease of model creation and customization - Models should be fairly compact and deserialization should allow for custom transformation of values</li>
         <li>Ease of comprehension - A library should be decently easy to understand if one needs to dive into the source code</li>
       </ul>
 
