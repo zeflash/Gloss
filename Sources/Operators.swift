@@ -450,3 +450,217 @@ public func ~~> (key: String, property: [UInt64]?) -> JSON? {
 public func ~~> (key: String, property: NSURL?) -> JSON? {
     return Encoder.encodeURL(key)(property)
 }
+
+infix operator <~~~ { associativity left precedence 150 }
+
+/**
+ Convenience operator for decoding JSON to generic value.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T>(key: String, json: JSON) throws -> T {
+    if let value: T = Decoder.decode(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to Decodable object.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T: Decodable>(key: String, json: JSON) throws -> T {
+    if let value: T = Decoder.decodeDecodable(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to array of Decodable objects.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T: Decodable>(key: String, json: JSON) throws -> [T] {
+    if let value: [T] = Decoder.decodeDecodableArray(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to dictionary of String to Decodable.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T: Decodable>(key: String, json: JSON) throws -> [String : T] {
+    if let value: [String : T] = Decoder.decodeDecodableDictionary(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to dictionary of String to Decodable array.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T: Decodable>(key: String, json: JSON) throws -> [String : [T]] {
+    if let value: [String : [T]] = Decoder.decodeDecodableDictionary(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to enum value.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T: RawRepresentable>(key: String, json: JSON) throws -> T {
+    if let value: T = Decoder.decodeEnum(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to array of enum values.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ <T: RawRepresentable>(key: String, json: JSON) throws -> [T] {
+    if let value: [T] = Decoder.decodeEnumArray(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to Int32.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> Int32 {
+    if let value = Decoder.decodeInt32(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to Int32 array.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> [Int32] {
+    if let value = Decoder.decodeInt32Array(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to UInt32.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> UInt32 {
+    if let value = Decoder.decodeUInt32(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to UInt32 array.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> [UInt32] {
+    if let value = Decoder.decodeUInt32Array(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to Int64.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> Int64 {
+    if let value = Decoder.decodeInt64(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to Int64 array.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> [Int64] {
+    if let value = Decoder.decodeInt64Array(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to UInt64.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> UInt64 {
+    if let value = Decoder.decodeUInt64(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to UInt64 array.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> [UInt64] {
+    if let value = Decoder.decodeUInt64Array(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+/**
+ Convenience operator for decoding JSON to URL.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, throws otherwise.
+ */
+public func <~~~ (key: String, json: JSON) throws -> NSURL {
+    if let value = Decoder.decodeURL(key)(json) { return value }
+    throw GlossError.EmptyForceDecode
+}
+
+enum GlossError: ErrorType {
+    case EmptyForceDecode
+}

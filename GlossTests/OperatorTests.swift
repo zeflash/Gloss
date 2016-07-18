@@ -264,6 +264,14 @@ class OperatorTests: XCTestCase {
         XCTAssertTrue((result! == decoderResult!), "<~~ for url array should return same as Decoder.decodeURLArray")
     }
     
+    // MARK: - Operator <~~~
+    func testForceDecodeOperatorInt64ReturnsDecoderInt64() {
+        let result: Int64? = try? "int64" <~~~ testJSON!
+        let decoderResult: Int64? = Decoder.decodeInt64("int64")(testJSON!)
+        
+        XCTAssertTrue((result == decoderResult), "<~~~ for Int64 should return same as Decoder.decodeInt64")
+    }
+    
     // MARK: - Operator ~~>
     
     func testEncodeOperatorGenericReturnsEncoderEncodeForBool() {
